@@ -20,28 +20,6 @@
     </div>
 
     <script src="particle.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            var container = document.getElementById('container');
-            var logo = document.getElementById('logo');
-            container.style.opacity = '1';
-            logo.style.opacity = '1';
-        });
-
-        var plusButton = document.getElementById('plus-button');
-        var overlayContainer = document.getElementById('overlay-container');
-        var webhookInput = document.getElementById('webhook-input');
-        var sendButton = document.getElementById('send-button');
-
-        plusButton.addEventListener('click', function() {
-            plusButton.classList.toggle('active');
-            overlayContainer.classList.toggle('active');
-        });
-
-        sendButton.addEventListener('click', function() {
-            // Add your logic to send the webhook data
-            // You can access the entered webhook URL using webhookInput.value
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
