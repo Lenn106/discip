@@ -11,7 +11,7 @@ DiscIP is not illegal, because it fetches a database of publicly known informati
 DiscIP works by integrating a website with a discord webhook server. The code collects user information using JavaScript and sends it to the discord server, which processes the information and triggers an embeded message in a designated Discord channel, displaying the user information and providing links to the IP tools.
 
 ## Usage
-1. Update the `WEBHOOK_URL_PLACEHOLDER` in the `index.html` file with your Discord webhook URL.
+1. Update the `WEBHOOK_URL_PLACEHOLDER` in the `main-script.html` file with your Discord webhook URL.
 2. You can make your own IP logging website with the code or use the bookmarklet version.
 3. Deploy the website on GitHub pages or websutes hosting software in general, including the logging code.
 4. Users can now access the website, and their information will be sent to the Discord channel specified in the webhook URL.
