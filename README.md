@@ -22,4 +22,3 @@ Contributions to DiscIP are welcome! If you find any issues or have suggestions 
 ## License
 This project is licensed under the [Unlicense](LICENSE).
 
-https://lenn106.github.io/discordiplogger/
