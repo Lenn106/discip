@@ -1,4 +1,4 @@
-# Discip
+# Discip https://lenn106.github.io/discip
 # <img src="https://tinypic.host/images/2023/07/18/imagebe53bf784cc7a1a7.png" alt="DiscIP Logo" width="100" height="100">
 
 ## Description
