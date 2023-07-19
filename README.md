@@ -1,5 +1,4 @@
-# 
-DiscIP <img src="https://tinypic.host/images/2023/07/18/imagebe53bf784cc7a1a7.png" alt="DiscIP Logo" width="50" height="50">
+# DiscIP <img src="https://tinypic.host/images/2023/07/18/imagebe53bf784cc7a1a7.png" alt="DiscIP Logo" width="50" height="50">
 
 ## Description
 DiscIP is a Discord project that allows you to gather user information and perform IP-related tasks within a Discord server. It provides an easy-to-use interface for retrieving user agent, IP address, operating system, and website domain information. Additionally, it offers handy IP tools like IP resolver, IP lookup, and DDoS attack tools.
