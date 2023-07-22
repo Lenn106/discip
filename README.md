@@ -1,5 +1,7 @@
-# Discip https://lenn106.github.io/Discip
-#  <img src="https://tinypic.host/images/2023/07/22/disciomd.png" alt="DiscIP Logo" width="30" height="50"> Discip 
+
+# Discip <img src="https://tinypic.host/images/2023/07/22/disciomd.png" alt="DiscIP Logo" width="30" height="50">
+
+https://lenn106.github.io/Discip
 
 ## Description
 DiscIP is a Discord project that allows you to gather user information and perform IP-related tasks within a Discord server. It provides an easy-to-use interface for retrieving user agent, IP address, operating system, and website domain information. Additionally, it offers handy IP tools like IP resolver, IP lookup, and DDoS attack tools.
