@@ -1,5 +1,5 @@
 # Discip https://lenn106.github.io/Discip
-# Discip <img src="https://tinypic.host/images/2023/07/22/disciomd.png" alt="DiscIP Logo" width="30" height="60">
+# Discip <img src="https://tinypic.host/images/2023/07/22/disciomd.png" alt="DiscIP Logo" width="40" height="60">
 
 
 ## Description
