@@ -15,7 +15,7 @@ DiscIP works by integrating a website with a discord webhook server. The code co
 ## Usage
 1. Update the `WEBHOOK_URL_PLACEHOLDER` in the `main-script.html` file with your Discord webhook URL.
 2. You can make your own IP logging website with the code or use the bookmarklet version.
-3. Deploy the website on GitHub pages or websutes hosting software in general, including the logging code.
+3. Deploy the website on GitHub pages or any website hosting software in general, including the logging code.
 4. Users can now access the website, and their information will be sent to the Discord channel specified in the webhook URL.
 
 ## Contributing
