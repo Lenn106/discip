@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            user-select: none; /* Prevent text/images from being selectable */
+            user-select: none; 
         }
 
         #gradient-background {
@@ -30,7 +30,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none; /* Disable interaction with particles */
+            pointer-events: none; 
         }
 
         #container {
@@ -178,6 +178,7 @@
 
         #overlay-container {
             position: fixed;
+            z-index: 9999;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
